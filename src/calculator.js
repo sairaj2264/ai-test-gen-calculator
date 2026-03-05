@@ -28,6 +28,12 @@ function modulo(a, b) {
   return a % b;
 }
 
+function square(a) {
+  return a * a;
+}
+
+
+
 module.exports = {
   add,
   subtract,
@@ -35,4 +41,5 @@ module.exports = {
   divide,
   power,
   modulo,
+  square,
 };
