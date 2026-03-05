@@ -22,6 +22,8 @@ module.exports = {
   subtract,
   multiply,
   divide,
+  power,
+  modulo,
 };
 function power(a, b) {
   return a ** b;
@@ -38,3 +40,10 @@ module.exports = {
   divide,
   power,
 };
+
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error("Modulo by zero");
+  }
+  return a % b;
+}
