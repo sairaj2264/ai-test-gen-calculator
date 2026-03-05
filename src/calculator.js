@@ -35,6 +35,12 @@ function square(a) {
 function average(a, b) {
   return (a + b) / 2;
 }
+function sqrt(a) {
+if (a < 0) {
+throw new Error("Square root of negative number");
+}
+return Math.sqrt(a);
+}
 
 
 
@@ -47,4 +53,5 @@ module.exports = {
   modulo,
   square,
   average,
+  sqrt
 };
