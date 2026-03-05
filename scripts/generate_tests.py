@@ -18,16 +18,21 @@ Generate Jest unit tests for the following JavaScript code.
 Code:
 {code}
 
-Requirements:
-- valid Jest syntax
-- edge cases
-- invalid inputs
-- division by zero case
-- multiple scenarios
+Rules:
+- Output ONLY valid JavaScript
+- Do NOT include explanations
+- Do NOT include <think> tags
+- Do NOT include markdown
+- Only return Jest test code
 
-Return ONLY the test code.
+Example format:
+
+const calc = require("../src/calculator");
+
+test("adds numbers", () => {{
+  expect(calc.add(2,3)).toBe(5);
+}});
 """
-
 completion = client.chat.completions.create(
     model="minimaxai/minimax-m2.5",
     messages=[
@@ -39,8 +44,20 @@ completion = client.chat.completions.create(
 
 tests = completion.choices[0].message.content
 
+# Remove reasoning tags
+tests = tests.replace("<think>", "").replace("</think>", "")
+
+# Remove markdown code blocks
+tests = tests.replace("```javascript", "").replace("```", "")
+
+# Trim whitespace
+tests = tests.strip()
+
 # Save generated tests
 with open("tests/generated.test.js", "w") as f:
     f.write(tests)
 
 print("AI tests generated successfully")
+print("===== GENERATED TESTS =====")
+print(tests)
+print("===========================")
