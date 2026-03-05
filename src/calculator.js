@@ -32,6 +32,10 @@ function square(a) {
   return a * a;
 }
 
+function average(a, b) {
+  return (a + b) / 2;
+}
+
 
 
 module.exports = {
@@ -42,4 +46,5 @@ module.exports = {
   power,
   modulo,
   square,
+  average,
 };
