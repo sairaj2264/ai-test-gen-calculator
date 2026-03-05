@@ -23,3 +23,6 @@ module.exports = {
   multiply,
   divide,
 };
+function power(a, b) {
+  return a ** b;
+}
