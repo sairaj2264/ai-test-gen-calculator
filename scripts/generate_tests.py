@@ -44,13 +44,18 @@ completion = client.chat.completions.create(
 
 tests = completion.choices[0].message.content
 
-# Remove reasoning tags
+# Remove reasoning tags if present
 tests = tests.replace("<think>", "").replace("</think>", "")
 
-# Remove markdown code blocks
+# Remove markdown blocks
 tests = tests.replace("```javascript", "").replace("```", "")
 
-# Trim whitespace
+# Find where actual JS starts
+start_index = tests.find("const ")
+
+if start_index != -1:
+    tests = tests[start_index:]
+
 tests = tests.strip()
 
 # Save generated tests
@@ -58,6 +63,6 @@ with open("tests/generated.test.js", "w") as f:
     f.write(tests)
 
 print("AI tests generated successfully")
-print("===== GENERATED TESTS =====")
+print("===== CLEANED TESTS =====")
 print(tests)
-print("===========================")
+print("=========================")
