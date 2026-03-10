@@ -42,6 +42,9 @@ throw new Error("Square root of negative number");
 return Math.sqrt(a);
 }
 
+function max(a, b) {
+return a > b ? a : b;
+}
 
 
 module.exports = {
@@ -53,5 +56,5 @@ module.exports = {
   modulo,
   square,
   average,
-  sqrt
+  sqrt,max
 };
